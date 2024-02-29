@@ -1,42 +1,10 @@
-<?php
-
-$db_name = 'mysql:host=localhost;dbname=contact_db';
-$username = 'root';
-$password = '';
-
-$conn = new PDO($db_name, $username, $password);
-
-if(isset($_POST['send'])){
-
-   $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $number = $_POST['number'];
-   $number = filter_var($number, FILTER_SANITIZE_STRING);
-   $guests = $_POST['guests'];
-   $guests = filter_var($guests, FILTER_SANITIZE_STRING);
-
-   $select_contact = $conn->prepare("SELECT * FROM `contact_form` WHERE name = ? AND number = ? AND guests = ?");
-   $select_contact->execute([$name, $number, $guests]);
-
-   if($select_contact->rowCount() > 0){
-      $message[] = 'message sent already!';
-   }else{
-      $insert_contact = $conn->prepare("INSERT INTO `contact_form`(name, number, guests) VALUES(?,?,?)");
-      $insert_contact->execute([$name, $number, $guests]);
-      $message[] = 'message sent successfully!';
-   }
-
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Complete Responsive Coffee Shop Website Design</title>
+   <title>Product Food</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -46,37 +14,22 @@ if(isset($_POST['send'])){
 
 </head>
 <body>
-
-<?php
-
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
-
-?>
-
+   
 <!-- header section starts  -->
 
 <header class="header">
 
    <section class="flex">
 
-      <a href="#home" class="logo"><img src="images/logo.png" alt=""></a>
+      <a href="#home" class="logo"><img src="images/makananno.jpeg" alt=""></a>
 
       <nav class="navbar">
-         <a href="#home">home</a>
-         <a href="#about">about</a>
-         <a href="#menu">menu</a>
-         <a href="#gallery">gallery</a>
-         <a href="#team">team</a>
-         <a href="#contact">contact</a>
+         <a href="#home">Beranda</a>
+         <a href="#about">Tentang Kami</a>
+         <a href="#menu">jajanan Pasar</a>
+         <a href="#gallery">Minuman</a>
+         <a href="#team">Makanan</a>
+         <a href="#contact">Hubungi Kami</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -85,203 +38,280 @@ if(isset($message)){
 
 </header>
 
-<!-- header section ends -->
-
-<!-- home section starts  -->
-
-<div class="menu-1">
+<div class="download">
 
    <section class="home" id="home">
 
       <div class="content">
-         <h3>coffee heaven</h3>
-         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut officia, accusantium mollitia laudantium dolorum dolore.</p>
-         <a href="#about" class="btn">about us</a>
+         <h3>BAROKAH FOOD</h3>
+         <p>Selamat Datang di Barokah Food. Anda bisa melihat produk makanan dan minuman dari sulasmi food.</p>
+         <a href="#about" class="btn">Tentang Kami</a>
       </div>
 
    </section>
 
 </div>
 
-<!-- home section ends -->
-
-<!-- about section starts  -->
-
 <section class="about" id="about">
 
    <div class="image">
-      <img src="images/about-img.svg" alt="">
+      <img src="images/download.jpeg" alt="">
    </div>
 
    <div class="content">
-      <h3>A cup of coffee can complete your day</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam suscipit sunt repellendus, dolorum recusandae placeat quae. Iste eaque aspernatur, animi deleniti voluptas, sunt molestias eveniet sint consectetur facere a ex.</p>
-      <a href="#menu" class="btn">our menu</a>
+      <h3>Sebuah makanan dan minuman yang kami sajikan dengan bahan berkulitas, higienis, dan bergizi</h3>
+      <p>Makanan Kami terdiri dari makanan rumah, aneka jajanan, dan aneka minuman.</p>
    </div>
 
 </section>
-
-<!-- about section ends -->
-
-<!-- facility section starts  -->
-
 <section class="facility">
 
    <div class="heading">
       <img src="images/heading-img.png" alt="">
-      <h3>our facility</h3>
+      <h3>Produk Kami</h3>
    </div>
 
    <div class="box-container">
 
       <div class="box">
-         <img src="images/icon-1.png" alt="">
-         <h3>varieties of coffees</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, adipisci!</p>
+         <img src="images/makanan.jpeg" alt="">
+         <h3>Aneka Makanan Rumah</h3>
       </div>
 
       <div class="box">
-         <img src="images/icon-2.png" alt="">
-         <h3>coffee beans</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, adipisci!</p>
+         <img src="images/jajan.jpeg" alt="">
+         <h3>Aneka jajanan Pasar</h3>
       </div>
 
       <div class="box">
-         <img src="images/icon-3.png" alt="">
-         <h3>breakfast and sweets</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, adipisci!</p>
+         <img src="images/minuman.jpeg" alt="">
+         <h3>Aneka Minuman</h3>
       </div>
 
       <div class="box">
-         <img src="images/icon-4.png" alt="">
-         <h3>read to go coffee</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, adipisci!</p>
+         <img src="images/box.jpeg" alt="">
+         <h3>Aneka Makanan Box dan Mika</h3>
       </div>
 
    </div>
 
 </section>
-
-<!-- facility section ends -->
-
-<!-- menu section starts  -->
-
 <section class="menu" id="menu">
 
    <div class="heading">
       <img src="images/heading-img.png" alt="">
-      <h3>popular menu</h3>
+      <h3>Aneka jajanan Pasar</h3>
    </div>
 
    <div class="box-container">
 
       <div class="box">
-         <img src="images/menu-1.png" alt="">
-         <h3>love you coffee</h3>
+         <img src="images/donatguladanseres.jpeg" alt="">
+         <h3>Donat Gula Dan Seres</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
 
       <div class="box">
-         <img src="images/menu-2.png" alt="">
-         <h3>Cappuccino</h3>
+         <img src="images/dadargulung.jpeg" alt="">
+         <h3>Dadar Gulung</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
 
       <div class="box">
-         <img src="images/menu-3.png" alt="">
-         <h3>Mocha coffee</h3>
+         <img src="images/putuayu.jpeg" alt="">
+         <h3>Putu Ayu</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
 
       <div class="box">
-         <img src="images/menu-4.png" alt="">
-         <h3>Frappuccino</h3>
+         <img src="images/gemblong.jpeg" alt="">
+         <h3>Gemblong</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
-
       <div class="box">
-         <img src="images/menu-5.png" alt="">
-         <h3>black coffee</h3>
+         <img src="images/onde.jpeg" alt="">
+         <h3>Onde-Onde</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
-
       <div class="box">
-         <img src="images/menu-6.png" alt="">
-         <h3>love heart coffee</h3>
+         <img src="images/lemper.jpeg" alt="">
+         <h3>lemper</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
       </div>
-
+      <div class="box">
+         <img src="images/bakwan.jpeg" alt="">
+         <h3>Bakwan</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/buras.jpeg" alt="">
+         <h3>Buras</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/tahuisi.jpeg" alt="">
+         <h3>Tahu Isi</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/pisang.jpeg" alt="">
+         <h3>Pisang Goreng</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/tempe.jpeg" alt="">
+         <h3>Tempe Goreng</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/risol.jpeg" alt="">
+         <h3>Risol</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/psicok.jpeg" alt="">
+         <h3>Piscok</h3>
+         <p>Harga Rp 1000 | Isi Request</p>
+      </div>
+      <div class="box">
+         <img src="images/ubioriginal.jpeg" alt="">
+         <h3>Ubi Original</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/ubitepung.jpeg" alt="">
+         <h3>Ubi Tepung</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/nagasari.jpeg" alt="">
+         <h3>Nagasari</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/putrrinoong.jpeg" alt="">
+         <h3>Putri No'ong</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/mendut.jpeg" alt="">
+         <h3>Mendut</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/apem.jpeg" alt="">
+         <h3>Apem</h3>
+         <p>Harga Rp 1000 </p>
+      </div>
+      <div class="box">
+         <img src="images/mayones.jpeg" alt="">
+         <h3>Risol Mayones</h3>
+         <p>Harga Rp 2500 </p>
+      </div>
    </div>
 
 </section>
-
-<!-- menu section ends -->
-
-<!-- gallery section starts  -->
-
 <section class="gallery" id="gallery">
 
    <div class="heading">
       <img src="images/heading-img.png" alt="">
-      <h3>our gallery</h3>
+      <h3>Minuman</h3>
    </div>
 
    <div class="box-container">
-      <img src="images/gallery-1.webp" alt="">
-      <img src="images/gallery-2.webp" alt="">
-      <img src="images/gallery-3.webp" alt="">
-      <img src="images/gallery-4.webp" alt="">
-      <img src="images/gallery-5.webp" alt="">
-      <img src="images/gallery-6.webp" alt="">
+      <div class="box">
+         <img src="images/escampuer.jpeg" alt="">
+         <h3>Es Campur</h3>
+         <h4>Harga : satu Porsi  Rp 8000 | Isi Request</h4>
+      </div>
+      <div class="box">
+         <img src="images/es buah.jpeg" alt="">
+         <h3>Es Buah</h3>
+         <h4>Harga : satu Porsi  Rp 8000 | Isi Request</h4>
+      </div>
+      <div class="box">
+         <img src="images/esteh.jpeg" alt="">
+         <h3>Es Teh</h3>
+         <h4>Harga :  Rp 4000</h4>
+      </div>
+      <div class="box">
+         <img src="images/kopi.jpeg" alt="">
+         <h3>Kopi</h3>
+         <h3>Harga :  Rp 3000 | I</h3>
+      </div>
+      <div class="box">
+         <img src="images/ager.jpeg" alt="">
+         <h3>Ager</h3>
+         <h3>Harga Rp 2000 | Isi Request</h3>
+      </div>
+      <div class="box">
+         <img src="images/puding.jpeg" alt="">
+         <h3>Puding</h3>
+         <h3>Harga Rp 1000 | Isi Request</h3>
+      </div>
    </div>
 
 </section>
-
-<!-- gallery section ends -->
-
-<!-- team section starts  -->
-
 <section class="team" id="team">
 
    <div class="heading">
       <img src="images/heading-img.png" alt="">
-      <h3>our team</h3>
+      <h3>Aneka Makanan Rumah</h3>
    </div>
 
    <div class="box-container">
 
       <div class="box">
-         <img src="images/our-team-1.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/nasipecel.jpeg" alt="">
+         <h3>Nasi Pecel</h3>
+         <h4>Harga : satu Porsi  Rp 7000 | Isi Request</h4>
       </div>
       <div class="box">
-         <img src="images/our-team-2.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/nasikuning.jpeg" alt="">
+         <h3>Nasi Kuning</h3>
+         <h4>Harga : satu Porsi  Rp 7000 | Isi Request</h4>
       </div>
       <div class="box">
-         <img src="images/our-team-3.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/nasiuduk.jpeg" alt="">
+         <h3>Nasi Uduk</h3>
+         <h4>Harga : satu Porsi  Rp 7000 | Isi Request</h4>
       </div>
       <div class="box">
-         <img src="images/our-team-4.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/nasirames.jpeg" alt="">
+         <h3>Nasi Rames</h3>
+         <h4>Harga : satu Porsi  Rp 8000 | Isi Request</h4>
       </div>
       <div class="box">
-         <img src="images/our-team-5.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/nasigoreng.jpeg" alt="">
+         <h3>Nasi Goreng</h3>
+         <h4>Harga : satu Porsi  Rp 7000 | Isi Request</h4>
       </div>
       <div class="box">
-         <img src="images/our-team-6.jpg" alt="">
-         <h3>john deo</h3>
+         <img src="images/lontongsayur.jpeg" alt="">
+         <h3>Lontong Sayur</h3>
+         <h4>Harga : satu Porsi  Rp 7000 | Isi Request</h4>
+      </div>
+      <div class="box">
+         <img src="images/box.jpeg" alt="">
+         <h3>Makanan Box</h3>
+         <h4>Harga : satu Porsi  Rp 10.000 | Isi Request</h4>
+      </div>
+      <div class="box">
+         <img src="images/mika.jpeg" alt="">
+         <h3>Makanan Bungkus Mika</h3>
+         <h4>Harga : satu Porsi  Rp 8000 | Isi Request</h4>
       </div>
 
    </div>
 
 </section>
 
-<!-- team section ends -->
-
-<!-- contact section starts  -->
 
 <section class="contact" id="contact">
 
    <div class="heading">
       <img src="images/heading-img.png" alt="">
-      <h3>contact us</h3>
+      <h3>Kontal Kami</h3>
    </div>
 
    <div class="row">
@@ -290,21 +320,29 @@ if(isset($message)){
          <img src="images/contact-img.svg" alt="">
       </div>
 
-      <form action="" method="post">
-         <h3>book a table</h3>
-         <input type="text" name="name" required class="box" maxlength="20" placeholder="enter your name">
-         <input type="number" name="number" required class="box" maxlength="20" placeholder="enter your number" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false">
-         <input type="number" name="guests" required class="box" maxlength="20" placeholder="how many guests" min="0" max="99" onkeypress="if(this.value.length == 2) return false">
-         <input type="submit" name="send" value="send message" class="btn">
+      <form action="https://formspree.io/f/mayzqyqa" method="POST">
+         <h3>Hubungi Kami jika Anda Tertarik dengan Produk Kami</h3>
+         <textarea type="text" name="name"  class="box"maxlength="100000000000000000"  min="0" max="999999999999999999999999999999999999999999999999999999999999" onkeypress="if(this.value.length == 100000000000000000000000000000000000000000) return false"" id="name" placeholder="Masukan Nama Anda"required></textarea>
+         <input type="email" name="email" id="email" class="box"   placeholder="Masukan E-mail Anda" required>
+         <textarea type="text" name="send feedback"  class="box" maxlength="100000000000000000"  min="0" max="999999999999999999999999999999999999999999999999999999999999" onkeypress="if(this.value.length == 100000000000000000000000000000000000000000) return false"  placeholder="Masukan Pesan Anda" required"></textarea>
+         <input type="submit" name="send" value="Kirim Pesan Sekarang" class="btn">
+         <!-- <h3>Atau Anda Bisa Melewati Whatsapp kami?</h3>
+            <p>
+              Anda Bisa menghubungi Kami dengan melihat Nomor Kontak Kami Dibawah ini
+              whatsapp :0813-1890-4100 || 0812-8686-6859
+              atau bisa memencet tombol link                  
+            </p>
+            <p> atas nama Barokah Food 1 
+              <a  href = "https://wa.me/message/UOSOKB6T3F7WN1" > https://WA.ME/+6281286866859</a>                 
+            </p>
+            <p> atau Nama  sulasmi Food 2
+              <a h href = "https://wa.me/qr/RH463UT2RQOTD1" > https://WA.ME/+6281318904100 </a>                 
+            </p> -->
       </form>
 
    </div>
 
 </section>
-
-<!-- contact section ends -->
-
-<!-- footer section starts  -->
 
 <section class="footer">
 
@@ -312,59 +350,34 @@ if(isset($message)){
 
       <div class="box">
          <i class="fas fa-envelope"></i>
-         <h3>our email</h3>
-         <p>shaikhanas@gmail.com</p>
-         <p>anasbhai@gmail.com</p>
+         <h3>E-mail Kami</h3>
+         <a href="mailto:rikysyahroiland085@gmail.com">rikysyahroiland085@gmail.com</a>
       </div>
 
       <div class="box">
          <i class="fas fa-clock"></i>
-         <h3>opening hours</h3>
-         <p>07:00am to 09:00pm</p>
+         <h3>Jam Operasional</h3>
+         <p>07:00 - 24:00</p>
       </div>
 
       <div class="box">
          <i class="fas fa-map-marker-alt"></i>
-         <h3>shop location</h3>
-         <p>mumbai, india - 400104</p>
+         <h3>Lokasi Produk</h3>
+         <p>Ds. Wadas,Kec. Telukjambe Timur, Karawang, Indonesia - 41361</p>
       </div>
 
-      <div class="box">
+      <!-- <div class="box">
          <i class="fas fa-phone"></i>
-         <h3>our number</h3>
-         <p>+123-456-7890</p>
-         <p>+111-222-3333</p>
-      </div>
+         <h3>Kontak Kami</h3>
+         <!-- <p href = "Https://WA.ME/+6281318904100">081318904100</p> -->
+         <!-- <a  href = "https://wa.me/message/UOSOKB6T3F7WN1">081286866859</a> -->
+      <!-- </div> -->
 
    </div>
 
-   <div class="credit"> &copy; copyright @ <?= date('Y'); ?> by <span>mr. web designer</span> | all rights reserved! </div>
+   <div class="credit"> <span>Sulasmi Food</span> | all Food </div>
 
 </section>
-
-<!-- footer section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
